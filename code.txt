@@ -1,0 +1,81 @@
+! pip install keras
+add Codeadd Markdown
+The pre-trained model wil be downloaded from Hugging Face Model Hub, hence we're installing huggingface_hub
+
+add Codeadd Markdown
+! pip install huggingface_hub
+add Codeadd Markdown
+These are the other two libraries used in this code but it's available with Kaggle Notebooks without Installations
+
+add Codeadd Markdown
+#numpy
+#Pillow
+add Codeadd Markdown
+Loading required libraries
+
+add Codeadd Markdown
+import numpy as np # array manipulation
+from huggingface_hub import from_pretrained_keras # download the model
+import keras # deep learning
+from PIL import Image # Image processing
+add Codeadd Markdown
+#from PIL import Image # Image processing
+add Codeadd Markdown
+model = from_pretrained_keras("keras-io/lowlight-enhance-mirnet", compile=False)
+add Codeadd Markdown
+#! wget
+add Codeadd Markdown
+If you happen to read PNG images, it's possible they are read as RGBA with a transparency channel.Hence, while reading/opening the input image, we are converting it to RGB (removing the transparency channel).
+
+add Codeadd Markdown
+#005e53b1b6aada 00354cd9244e28
+​
+low_light_img = Image.open('../input/happy-whale-and-dolphin/train_images/000110707af0ba.jpg').convert('RGB')
+add Codeadd Markdown
+low_light_img
+add Codeadd Markdown
+There are lot of different methods to resize the image, this is one of the simpler methods but I'd strongly encourage you to check other options here - https://pillow.readthedocs.io/en/stable/handbook/concepts.html#concept-filters
+
+add Codeadd Markdown
+low_light_img = low_light_img.resize((256,256),Image.NEAREST)
+add Codeadd Markdown
+low_light_img
+add Codeadd Markdown
+image = keras.preprocessing.image.img_to_array(low_light_img)
+add Codeadd Markdown
+image.shape
+add Codeadd Markdown
+image = image.astype('float32') / 255.0
+add Codeadd Markdown
+image.shape
+add Codeadd Markdown
+image = np.expand_dims(image, axis = 0)
+add Codeadd Markdown
+image.shape
+add Codeadd Markdown
+output = model.predict(image) # model inference to enhance the low light pics
+add Codeadd Markdown
+output_image = output[0] * 255.0
+add Codeadd Markdown
+output_image.shape
+add Codeadd Markdown
+output_image = output_image.clip(0,255)
+add Codeadd Markdown
+output_image.shape
+add Codeadd Markdown
+#output_image
+add Codeadd Markdown
+output_image = output_image.reshape((np.shape(output_image)[0],np.shape(output_image)[1],3))
+add Codeadd Markdown
+output_image
+add Codeadd Markdown
+output_image = np.uint32(output_image)
+add Codeadd Markdown
+#output_image
+add Codeadd Markdown
+Final Image
+
+add Codeadd Markdown
+Image.fromarray(output_image.astype('uint8'),'RGB')
+add Codeadd Markdown
+The end
