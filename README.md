@@ -13,7 +13,7 @@ and so on. We hope this can help to provide some help to the development of new 
 
 Run the code in the kaggle and download the datasets(training images and testing images)
 
-#References
+#References papers
 1) Low-light image enhancement using MIRNet https://keras.io/examples/vision/mirnet/
 2) Low Light Video Enhancement with MIRNet https://arxiv.org/pdf/2003.06792v2.pdf
 3) Learning Enriched Features for Real Image Restoration and Enhancement https://paperswithcode.com/paper/learning-enriched-features-for-real-image
