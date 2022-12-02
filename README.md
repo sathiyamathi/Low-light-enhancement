@@ -11,7 +11,8 @@ to go in dealing with these tasks, considering the great challenges in low photo
 Here, we collect a list of resources related to low light image enhancement, including datasets, methods/codes/papers, metrics,
 and so on. We hope this can help to provide some help to the development of new methods and solutions to the low light tasks.
 
-Run the code in the kaggle and download the datasets(training images and testing images)
+Download the train images and test images and run the code in the kaggle.
+For running the code you must have an kaggle account in order to run the code.
 
 #References papers
 1) Low-light image enhancement using MIRNet https://keras.io/examples/vision/mirnet/
